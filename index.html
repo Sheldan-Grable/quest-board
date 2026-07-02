@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quest Board</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Quest Board</h1>
+    <p>Browse available quests by difficulty.</p>
+  </header>
+
+  <main>
+   <section class="filters">
+  <div class="filter-group">
+    <h2>Difficulty</h2>
+    <div>
+      <button data-difficulty="all">All</button>
+      <button data-difficulty="easy">Easy</button>
+      <button data-difficulty="medium">Medium</button>
+      <button data-difficulty="hard">Hard</button>
+      <button data-difficulty="deadly">Deadly</button>
+    </div>
+  </div>
+
+  <div class="filter-group">
+    <h2>Quest Type</h2>
+    <div>
+      <button data-type="all">All</button>
+      <button data-type="Combat">Combat</button>
+      <button data-type="Roleplay">Roleplay</button>
+      <button data-type="Exploration">Exploration</button>
+      <button data-type="Investigation">Investigation</button>
+    </div>
+  </div>
+   </section>
+
+   <section class="search-section">
+  <label for="search-input">Search Quests</label>
+  <input
+    type="text"
+    id="search-input"
+    placeholder="Search by title or description..."
+   />
+   </section>
+
+    <p id="quest-count" class="quest-count"></p>
+
+    <section id="quest-list" class="quest-list">
+      <!-- Quest cards will be added here with JavaScript -->
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
