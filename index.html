@@ -3,109 +3,127 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quest Board</title>
+  <title>Quest Board | DM Toolkit</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="theme.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <a class="skip-link" href="#quest-list">Skip to quest contracts</a>
 
-  <header class="site-header">
-    <div class="site-header-content">
-      <p class="eyebrow">Adventurer's Guild Archive</p>
+  <main class="app-shell quest-board-shell">
+    <header class="hero quest-hero arcane-panel">
+      <div class="hero-content">
+        <p class="eyebrow">✦ Quest Archive</p>
 
-      <h1>Quest Board</h1>
+        <h1 class="page-title glow-text">Quest Board</h1>
 
-      <p class="header-description">
-        Browse campaign contracts by danger, type, status, location, quest giver, and story connection.
-      </p>
+        <p class="page-description">
+          A tactical dashboard for tracking campaign contracts, danger levels,
+          story leads, hidden hooks, and active quest status.
+        </p>
+
+        <div class="hero-meta cluster">
+          <span class="badge badge-primary">DM Toolkit</span>
+          <span class="badge badge-secondary">Campaign Intel</span>
+          <span class="badge badge-warning">Quest Network</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="quest-dashboard-layout">
+      <aside class="control-panel card card-accent" aria-labelledby="filters-heading">
+        <div class="panel-heading split">
+          <div>
+            <p class="eyebrow">Filters</p>
+            <h2 id="filters-heading">Refine Contracts</h2>
+          </div>
+
+          <button
+            type="button"
+            id="clear-filters"
+            class="button button-outline button-small"
+            aria-label="Clear all filters and search"
+          >
+            Clear
+          </button>
+        </div>
+
+        <section class="filter-group" aria-labelledby="difficulty-heading">
+          <h3 id="difficulty-heading">Difficulty</h3>
+
+          <div class="filter-options">
+            <button class="filter-button" type="button" data-difficulty="all" aria-controls="quest-list">All</button>
+            <button class="filter-button" type="button" data-difficulty="easy" aria-controls="quest-list">Easy</button>
+            <button class="filter-button" type="button" data-difficulty="medium" aria-controls="quest-list">Medium</button>
+            <button class="filter-button" type="button" data-difficulty="hard" aria-controls="quest-list">Hard</button>
+            <button class="filter-button" type="button" data-difficulty="deadly" aria-controls="quest-list">Deadly</button>
+          </div>
+        </section>
+
+        <section class="filter-group" aria-labelledby="type-heading">
+          <h3 id="type-heading">Quest Type</h3>
+
+          <div class="filter-options">
+            <button class="filter-button" type="button" data-type="all" aria-controls="quest-list">All</button>
+            <button class="filter-button" type="button" data-type="Combat" aria-controls="quest-list">Combat</button>
+            <button class="filter-button" type="button" data-type="Roleplay" aria-controls="quest-list">Roleplay</button>
+            <button class="filter-button" type="button" data-type="Exploration" aria-controls="quest-list">Exploration</button>
+            <button class="filter-button" type="button" data-type="Investigation" aria-controls="quest-list">Investigation</button>
+          </div>
+        </section>
+
+        <section class="filter-group" aria-labelledby="status-heading">
+          <h3 id="status-heading">Status</h3>
+
+          <div class="filter-options">
+            <button class="filter-button" type="button" data-status="all" aria-controls="quest-list">All</button>
+            <button class="filter-button" type="button" data-status="Available" aria-controls="quest-list">Available</button>
+            <button class="filter-button" type="button" data-status="Urgent" aria-controls="quest-list">Urgent</button>
+            <button class="filter-button" type="button" data-status="Locked" aria-controls="quest-list">Locked</button>
+            <button class="filter-button" type="button" data-status="Hidden" aria-controls="quest-list">Hidden</button>
+            <button class="filter-button" type="button" data-status="Completed" aria-controls="quest-list">Completed</button>
+          </div>
+        </section>
+      </aside>
+
+      <section class="board-area" aria-labelledby="board-heading">
+        <h2 id="board-heading" class="sr-only">Quest Contracts</h2>
+
+        <div class="board-toolbar toolbar">
+          <p
+            id="quest-count"
+            class="quest-count"
+            aria-live="polite"
+            aria-atomic="true"
+          ></p>
+
+          <div class="search-section">
+            <label for="search-input">Search Archive</label>
+
+            <input
+              type="search"
+              id="search-input"
+              placeholder="Title, NPC, location, tag..."
+              autocomplete="off"
+              aria-controls="quest-list"
+            />
+          </div>
+        </div>
+
+        <section id="quest-list" class="quest-list" aria-label="Quest contracts">
+          <!-- Quest cards will be added here with JavaScript -->
+        </section>
+      </section>
     </div>
-  </header>
-
-  <main class="app-layout">
-    <aside class="control-panel" aria-labelledby="filters-heading">
-      <div class="panel-heading">
-        <div>
-          <p class="eyebrow">Filters</p>
-          <h2 id="filters-heading">Refine Contracts</h2>
-        </div>
-
-        <button
-          type="button"
-          id="clear-filters"
-          class="clear-filters-button"
-          aria-label="Clear all filters and search"
-        >
-          Clear
-        </button>
-      </div>
-
-      <section class="filter-group" aria-labelledby="difficulty-heading">
-        <h3 id="difficulty-heading">Difficulty</h3>
-
-        <div class="filter-options">
-          <button type="button" data-difficulty="all" aria-controls="quest-list">All</button>
-          <button type="button" data-difficulty="easy" aria-controls="quest-list">Easy</button>
-          <button type="button" data-difficulty="medium" aria-controls="quest-list">Medium</button>
-          <button type="button" data-difficulty="hard" aria-controls="quest-list">Hard</button>
-          <button type="button" data-difficulty="deadly" aria-controls="quest-list">Deadly</button>
-        </div>
-      </section>
-
-      <section class="filter-group" aria-labelledby="type-heading">
-        <h3 id="type-heading">Quest Type</h3>
-
-        <div class="filter-options">
-          <button type="button" data-type="all" aria-controls="quest-list">All</button>
-          <button type="button" data-type="Combat" aria-controls="quest-list">Combat</button>
-          <button type="button" data-type="Roleplay" aria-controls="quest-list">Roleplay</button>
-          <button type="button" data-type="Exploration" aria-controls="quest-list">Exploration</button>
-          <button type="button" data-type="Investigation" aria-controls="quest-list">Investigation</button>
-        </div>
-      </section>
-
-      <section class="filter-group" aria-labelledby="status-heading">
-        <h3 id="status-heading">Status</h3>
-
-        <div class="filter-options">
-          <button type="button" data-status="all" aria-controls="quest-list">All</button>
-          <button type="button" data-status="Available" aria-controls="quest-list">Available</button>
-          <button type="button" data-status="Urgent" aria-controls="quest-list">Urgent</button>
-          <button type="button" data-status="Locked" aria-controls="quest-list">Locked</button>
-          <button type="button" data-status="Hidden" aria-controls="quest-list">Hidden</button>
-          <button type="button" data-status="Completed" aria-controls="quest-list">Completed</button>
-        </div>
-      </section>
-    </aside>
-
-    <section class="board-area" aria-labelledby="board-heading">
-      <h2 id="board-heading" class="sr-only">Quest Contracts</h2>
-
-      <div class="board-toolbar">
-        <p
-          id="quest-count"
-          class="quest-count"
-          aria-live="polite"
-          aria-atomic="true"
-        ></p>
-
-        <div class="search-section">
-          <label for="search-input">Search</label>
-
-          <input
-            type="search"
-            id="search-input"
-            placeholder="Title, NPC, location, tag..."
-            autocomplete="off"
-            aria-controls="quest-list"
-          />
-        </div>
-      </div>
-
-      <section id="quest-list" class="quest-list" aria-label="Quest contracts">
-        <!-- Quest cards will be added here with JavaScript -->
-      </section>
-    </section>
   </main>
 
   <script src="script.js"></script>

@@ -1,129 +1,16 @@
-/* =========================
-   Theme Variables
-========================= */
+/* =========================================================
+   Quest Board App Styles
+   Uses shared DM Toolkit theme.css
+========================================================= */
 
-:root {
-  --bg-dark: #130d09;
-  --bg-mid: #2a1a10;
-  --bg-warm: #5e3d24;
 
-  --panel-dark: #21150e;
-  --panel-soft: #342216;
+/* =========================================================
+   Page Shell
+========================================================= */
 
-  --parchment: #f7ead0;
-  --parchment-soft: #fff8eb;
-  --parchment-deep: #e8cf9f;
-
-  --ink: #23170f;
-  --muted-ink: #6b5137;
-
-  --gold: #d9a94f;
-  --gold-light: #f3d27d;
-  --gold-muted: rgba(217, 169, 79, 0.32);
-
-  --brown: #5f3d24;
-  --brown-dark: #2f1f14;
-
-  --success: #2f7d4a;
-  --warning: #b86c1d;
-  --danger: #9d3328;
-  --arcane: #6a3da3;
-  --blue: #2d5f8f;
-  --teal: #00796b;
-
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 22px;
-
-  --shadow-soft: 0 12px 26px rgba(35, 20, 8, 0.16);
-  --shadow-card: 0 18px 35px rgba(35, 20, 8, 0.2);
-  --shadow-card-hover: 0 24px 46px rgba(35, 20, 8, 0.3);
-}
-
-/* =========================
-   Base
-========================= */
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Georgia, "Times New Roman", serif;
-  color: var(--ink);
-  background:
-    radial-gradient(circle at top left, rgba(243, 210, 125, 0.16), transparent 30rem),
-    radial-gradient(circle at top right, rgba(95, 61, 36, 0.32), transparent 30rem),
-    linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-warm) 45%, #cdb78d 100%);
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 248, 235, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 248, 235, 0.035) 1px, transparent 1px);
-  background-size: 34px 34px;
-  opacity: 0.32;
-}
-
-button,
-input,
-select {
-  font: inherit;
-}
-
-button {
-  padding: 0.42rem 0.68rem;
-  border: 1px solid rgba(243, 210, 125, 0.35);
-  border-radius: 999px;
-  background: rgba(255, 248, 235, 0.08);
-  color: var(--parchment-soft);
-  cursor: pointer;
-  font-size: 0.82rem;
-  transition:
-    transform 0.16s ease,
-    background 0.16s ease,
-    border-color 0.16s ease,
-    color 0.16s ease;
-}
-
-button:hover {
-  transform: translateY(-1px);
-  background: rgba(243, 210, 125, 0.16);
-  border-color: rgba(243, 210, 125, 0.72);
-}
-
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-summary:focus-visible {
-  outline: 3px solid var(--gold-light);
-  outline-offset: 3px;
-}
-
-button.active {
-  background: linear-gradient(180deg, var(--gold-light), var(--gold));
-  color: #1f160f;
-  border-color: var(--gold-light);
-  font-weight: bold;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
+.quest-board-shell {
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-2xl);
 }
 
 .skip-link {
@@ -133,174 +20,89 @@ button.active {
   z-index: 100;
   transform: translateY(-200%);
   padding: 0.65rem 0.9rem;
-  border-radius: 999px;
-  background: var(--gold);
-  color: #1f160f;
-  font-weight: bold;
+  color: white;
+  background: var(--color-primary);
+  border-radius: var(--radius-pill);
+  font-weight: 800;
 }
 
 .skip-link:focus {
   transform: translateY(0);
 }
 
-/* =========================
-   Header
-========================= */
+.quest-hero {
+  margin-bottom: var(--space-xl);
+}
 
-.site-header {
-  min-height: 255px;
+.hero-meta {
+  margin-top: var(--space-lg);
+}
+
+
+/* =========================================================
+   Dashboard Layout
+========================================================= */
+
+.quest-dashboard-layout {
   display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 3.75rem 1.25rem 4.75rem;
-  color: var(--parchment-soft);
-  background:
-    linear-gradient(rgba(19, 13, 9, 0.42), rgba(19, 13, 9, 0.82)),
-    radial-gradient(circle at center, #70482a 0%, var(--bg-mid) 62%, var(--bg-dark) 100%);
-  border-bottom: 5px solid var(--gold);
-  box-shadow: 0 14px 30px rgba(18, 10, 4, 0.32);
-  position: relative;
-  overflow: hidden;
-}
-
-.site-header::before,
-.site-header::after {
-  content: "";
-  position: absolute;
-  width: 18rem;
-  height: 18rem;
-  border: 1px solid rgba(243, 210, 125, 0.18);
-  border-radius: 50%;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.site-header::before {
-  left: -10rem;
-}
-
-.site-header::after {
-  right: -10rem;
-}
-
-.site-header-content {
-  position: relative;
-  z-index: 1;
-}
-
-.eyebrow {
-  margin: 0 0 0.55rem;
-  color: var(--gold-light);
-  font-size: 0.75rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 2.2px;
-}
-
-.site-header h1 {
-  margin: 0;
-  font-size: clamp(3rem, 7vw, 5.35rem);
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  text-shadow: 0 5px 0 rgba(0, 0, 0, 0.28);
-}
-
-.header-description {
-  max-width: 720px;
-  margin: 0.9rem auto 0;
-  color: #f4dfad;
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-
-/* =========================
-   App Layout
-========================= */
-
-.app-layout {
-  width: min(1280px, calc(100% - 2rem));
-  margin: -2.25rem auto 0;
-  padding-bottom: 3rem;
-  display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: var(--space-lg);
   align-items: start;
-  position: relative;
 }
-
-/* =========================
-   Sidebar Controls
-========================= */
 
 .control-panel {
   position: sticky;
-  top: 1rem;
-  padding: 0.95rem;
-  color: var(--parchment-soft);
-  background:
-    linear-gradient(180deg, rgba(33, 21, 14, 0.97), rgba(20, 13, 9, 0.98));
-  border: 1px solid rgba(243, 210, 125, 0.38);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 18px 35px rgba(18, 10, 4, 0.32);
+  top: var(--space-md);
 }
 
 .panel-heading {
-  display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-  gap: 1rem;
-  padding: 0.45rem 0.45rem 0.95rem;
-  margin-bottom: 0.95rem;
-  border-bottom: 1px solid rgba(243, 210, 125, 0.18);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border-soft);
 }
 
 .panel-heading h2 {
-  margin: 0;
-  font-size: 1.18rem;
-  line-height: 1.15;
-}
-
-.clear-filters-button {
-  padding: 0.34rem 0.58rem;
-  border-color: rgba(243, 210, 125, 0.26);
-  background: rgba(255, 248, 235, 0.06);
-  color: #d9c190;
-  font-size: 0.74rem;
-}
-
-.clear-filters-button:hover {
-  background: rgba(243, 210, 125, 0.14);
-  color: var(--parchment-soft);
+  margin-bottom: 0;
+  font-size: 1.35rem;
 }
 
 .filter-group {
-  padding: 0 0.45rem 1rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid rgba(243, 210, 125, 0.13);
+  padding-bottom: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border-soft);
 }
 
 .filter-group:last-child {
+  padding-bottom: 0;
   margin-bottom: 0;
   border-bottom: none;
 }
 
 .filter-group h3 {
-  margin: 0 0 0.65rem;
-  color: #d9c190;
-  font-size: 0.78rem;
+  margin-bottom: var(--space-sm);
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 1.55px;
 }
 
 .filter-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.42rem;
+  gap: var(--space-sm);
 }
 
-/* =========================
+.filter-options .filter-button {
+  min-height: 2.25rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.84rem;
+}
+
+
+/* =========================================================
    Board Toolbar
-========================= */
+========================================================= */
 
 .board-area {
   min-width: 0;
@@ -308,274 +110,272 @@ button.active {
 
 .board-toolbar {
   position: sticky;
-  top: 1rem;
+  top: var(--space-md);
   z-index: 10;
-  display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-  padding: 0.7rem;
-  background:
-    linear-gradient(180deg, rgba(255, 248, 235, 0.96), rgba(232, 207, 159, 0.94));
-  border: 1px solid rgba(95, 61, 36, 0.32);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(6px);
+  margin-top: 0;
+  margin-bottom: var(--space-lg);
+  background: rgba(17, 24, 39, 0.84);
+  backdrop-filter: blur(14px);
 }
 
 .quest-count {
   margin: 0;
-  padding: 0.46rem 0.78rem;
-  color: var(--parchment-soft);
-  background: rgba(19, 13, 9, 0.84);
-  border: 1px solid rgba(243, 210, 125, 0.5);
-  border-radius: 999px;
-  font-size: 0.88rem;
-  font-weight: bold;
-  white-space: nowrap;
+  color: var(--color-text-strong);
+  font-weight: 800;
 }
 
 .search-section {
-  width: min(360px, 100%);
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(220px, 360px);
+  gap: var(--space-sm);
   align-items: center;
-  gap: 0.55rem;
 }
 
 .search-section label {
-  color: var(--muted-ink);
-  font-size: 0.76rem;
-  font-weight: bold;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 1.35px;
 }
 
 #search-input {
-  width: 100%;
-  padding: 0.62rem 0.82rem;
-  border: 1px solid rgba(95, 61, 36, 0.58);
-  border-radius: 999px;
-  background: rgba(255, 248, 235, 0.96);
-  color: var(--ink);
-  box-shadow: inset 0 1px 5px rgba(47, 31, 20, 0.12);
+  min-height: 2.65rem;
 }
 
-#search-input::placeholder {
-  color: rgba(107, 81, 55, 0.72);
-}
 
-/* =========================
+/* =========================================================
    Quest Grid
-========================= */
+========================================================= */
 
 .quest-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
+  gap: var(--space-lg);
   align-items: start;
 }
 
 .no-results {
   grid-column: 1 / -1;
-  text-align: center;
-  background:
-    linear-gradient(180deg, rgba(255, 248, 235, 0.98), rgba(232, 207, 159, 0.98));
-  padding: 2rem;
-  border-radius: var(--radius-md);
-  border: 2px solid rgba(95, 61, 36, 0.75);
-  box-shadow: var(--shadow-card);
-  font-size: 1.2rem;
 }
 
-/* =========================
+
+/* =========================================================
    Quest Cards
-========================= */
+========================================================= */
 
 .quest-card {
-  background:
-    linear-gradient(180deg, rgba(255, 250, 237, 0.99), rgba(237, 216, 176, 0.99));
-  border-radius: var(--radius-lg);
-  border: 2px solid rgba(95, 61, 36, 0.78);
-  box-shadow: var(--shadow-card);
   position: relative;
   overflow: hidden;
+  color: var(--color-text);
+  background:
+    linear-gradient(180deg, rgba(30, 41, 59, 0.94), rgba(17, 24, 39, 0.96));
+  border: 1px solid var(--color-border-soft);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   transition:
-    transform 0.22s ease,
-    box-shadow 0.22s ease,
-    border-color 0.22s ease;
+    transform 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .quest-card::before {
   content: "";
   position: absolute;
-  inset: 9px;
-  border: 1px solid rgba(217, 169, 79, 0.52);
-  border-radius: 16px;
-  pointer-events: none;
-  opacity: 0.85;
-}
-
-.quest-card::after {
-  content: "";
-  position: absolute;
-  width: 10.5rem;
-  height: 10.5rem;
-  right: -5.25rem;
-  top: -5.25rem;
-  background: radial-gradient(circle, rgba(217, 169, 79, 0.22), transparent 66%);
+  inset: 0;
+  background:
+    radial-gradient(circle at top right, rgba(139, 92, 246, 0.16), transparent 12rem),
+    radial-gradient(circle at bottom left, rgba(20, 184, 166, 0.1), transparent 14rem);
   pointer-events: none;
 }
 
 .quest-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-card-hover);
-  border-color: var(--gold);
+  transform: translateY(-3px);
+  border-color: rgba(139, 92, 246, 0.55);
+  box-shadow: var(--shadow-md);
 }
 
 .quest-card-highlight {
-  border-color: var(--gold);
+  border-color: rgba(245, 158, 11, 0.72);
+  border-left-color: var(--color-gold);
   box-shadow:
-    0 0 0 4px rgba(243, 210, 125, 0.34),
-    var(--shadow-card-hover);
+    0 0 0 3px rgba(245, 158, 11, 0.16),
+    var(--shadow-md);
+}
+
+.contract-topline,
+.contract-heading,
+.quest-summary,
+.contract-info-list,
+.quest-details {
+  position: relative;
+  z-index: 1;
 }
 
 .contract-topline {
   display: flex;
   justify-content: space-between;
+  gap: var(--space-md);
   align-items: center;
-  gap: 1rem;
-  padding: 0.95rem 1.2rem 0.75rem;
-  background:
-    linear-gradient(90deg, rgba(47, 31, 20, 0.98), rgba(95, 61, 36, 0.9));
-  border-bottom: 2px solid rgba(217, 169, 79, 0.72);
-  position: relative;
-  z-index: 1;
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(8, 13, 26, 0.42);
+  border-bottom: 1px solid var(--color-border-soft);
 }
 
 .contract-label {
-  color: var(--gold-light);
-  font-size: 0.71rem;
-  font-weight: bold;
+  color: var(--color-secondary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 1.8px;
 }
 
 .contract-heading {
-  padding: 1.18rem 1.2rem 0.62rem;
-  position: relative;
-  z-index: 1;
+  padding: var(--space-lg) var(--space-lg) var(--space-sm);
 }
 
 .quest-title {
-  margin: 0 0 0.85rem;
-  color: #29180d;
-  font-size: 1.68rem;
-  line-height: 1.05;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-strong);
+  font-size: 1.45rem;
 }
 
 .quest-summary {
   margin: 0;
-  padding: 0 1.2rem 1.1rem;
-  color: #493523;
-  font-size: 1rem;
-  line-height: 1.56;
-  position: relative;
-  z-index: 1;
+  padding: 0 var(--space-lg) var(--space-lg);
+  color: var(--color-muted);
 }
 
 .contract-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: var(--space-sm);
 }
 
 .contract-chip {
   display: inline-flex;
   align-items: center;
-  width: fit-content;
-  padding: 0.32rem 0.64rem;
-  border-radius: 999px;
-  background: rgba(255, 248, 235, 0.78);
-  border: 1px solid rgba(95, 61, 36, 0.24);
+  min-height: 1.75rem;
+  padding: 0.32rem 0.65rem;
   font-size: 0.78rem;
-  font-weight: bold;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-pill);
 }
 
-/* Difficulty and type chip colors */
+
+/* =========================================================
+   Difficulty / Type Chips
+========================================================= */
 
 .difficulty.easy {
-  color: var(--success);
+  color: #bbf7d0;
+  background: var(--color-success-soft);
+  border-color: rgba(34, 197, 94, 0.34);
 }
 
 .difficulty.medium {
-  color: #a76600;
+  color: #fde68a;
+  background: var(--color-gold-soft);
+  border-color: rgba(245, 158, 11, 0.34);
 }
 
 .difficulty.hard {
-  color: var(--danger);
+  color: #fecaca;
+  background: var(--color-danger-soft);
+  border-color: rgba(239, 68, 68, 0.34);
 }
 
 .difficulty.deadly {
-  color: var(--arcane);
+  color: #ddd6fe;
+  background: var(--color-primary-soft);
+  border-color: rgba(139, 92, 246, 0.4);
 }
 
 .type.combat {
-  color: #8a3b12;
+  color: #fecaca;
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.32);
 }
 
 .type.roleplay {
-  color: var(--blue);
+  color: #bfdbfe;
+  background: rgba(59, 130, 246, 0.13);
+  border-color: rgba(59, 130, 246, 0.32);
 }
 
 .type.exploration {
-  color: var(--teal);
+  color: #ccfbf1;
+  background: var(--color-secondary-soft);
+  border-color: rgba(20, 184, 166, 0.32);
 }
 
 .type.investigation {
-  color: #455a64;
+  color: #cbd5e1;
+  background: rgba(148, 163, 184, 0.12);
+  border-color: rgba(148, 163, 184, 0.32);
 }
 
-/* =========================
+
+/* =========================================================
    Status Tracker
-========================= */
+========================================================= */
 
 .status-tools {
   display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
   align-items: center;
-  gap: 0.5rem;
+  justify-content: flex-end;
 }
 
 .status-badge {
-  display: inline-block;
-  padding: 0.38rem 0.66rem;
-  border: 1px solid rgba(255, 248, 235, 0.5);
-  border-radius: 999px;
-  color: #1f160f;
-  background: var(--gold-light);
-  font-size: 0.72rem;
-  font-weight: bold;
-  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: 0.32rem 0.65rem;
+  font-size: 0.74rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-pill);
 }
 
 .status-available {
-  background: #d8efc2;
+  color: #bbf7d0;
+  background: var(--color-success-soft);
+  border-color: rgba(34, 197, 94, 0.34);
 }
 
 .status-urgent {
-  background: #f0b36e;
+  color: #fecaca;
+  background: var(--color-danger-soft);
+  border-color: rgba(239, 68, 68, 0.34);
 }
 
 .status-locked {
-  background: #d7d0c4;
+  color: #cbd5e1;
+  background: rgba(148, 163, 184, 0.12);
+  border-color: rgba(148, 163, 184, 0.32);
 }
 
 .status-hidden {
-  background: #c9b7e8;
+  color: #ddd6fe;
+  background: var(--color-primary-soft);
+  border-color: rgba(139, 92, 246, 0.36);
 }
 
 .status-completed {
-  background: #b8d8c2;
+  color: #bbf7d0;
+  background: var(--color-success-soft);
+  border-color: rgba(34, 197, 94, 0.38);
 }
 
 .status-select-label {
@@ -583,228 +383,250 @@ button.active {
 }
 
 .status-select {
-  max-width: 120px;
-  padding: 0.32rem 0.46rem;
-  border: 1px solid rgba(255, 248, 235, 0.45);
-  border-radius: 999px;
-  background: rgba(255, 248, 235, 0.12);
-  color: var(--parchment-soft);
-  font-size: 0.74rem;
+  width: auto;
+  min-height: 1.9rem;
+  padding: 0.3rem 0.65rem;
+  color: var(--color-text);
+  background: rgba(15, 23, 42, 0.82);
+  border-color: var(--color-border-soft);
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
   cursor: pointer;
 }
 
-.status-select option {
-  color: var(--ink);
-  background: var(--parchment-soft);
-}
 
-/* =========================
+/* =========================================================
    Contract Info
-========================= */
+========================================================= */
 
 .contract-info-list {
   display: grid;
-  margin: 0 1.2rem 1rem;
-  border: 1px solid rgba(95, 61, 36, 0.2);
-  border-radius: 14px;
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
+  gap: var(--space-sm);
+  margin: 0 var(--space-lg) var(--space-lg);
 }
 
 .contract-info-item {
-  padding: 0.72rem 0.82rem;
-  background: rgba(255, 248, 235, 0.54);
-  border-bottom: 1px solid rgba(95, 61, 36, 0.14);
-}
-
-.contract-info-item:last-child {
-  border-bottom: none;
+  padding: var(--space-md);
+  background: rgba(15, 23, 42, 0.54);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-md);
 }
 
 .contract-info-item p {
-  margin: 0.22rem 0 0;
-  color: #3d2b1d;
-  line-height: 1.35;
+  margin: 0.25rem 0 0;
+  color: var(--color-text);
 }
 
 .info-label {
   display: block;
-  color: var(--muted-ink);
-  font-size: 0.71rem;
-  font-weight: bold;
+  color: var(--color-muted);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
 }
 
-/* =========================
-   Details / DM Dossier
-========================= */
+
+/* =========================================================
+   DM Dossier
+========================================================= */
 
 .quest-details {
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid rgba(95, 61, 36, 0.2);
-  position: relative;
-  z-index: 1;
+  border-top: 1px solid var(--color-border-soft);
 }
 
 .quest-details summary {
   cursor: pointer;
-  width: 100%;
-  padding: 0.9rem 1.2rem;
-  border-radius: 0;
-  background: rgba(217, 169, 79, 0.2);
-  color: #332015;
-  font-weight: bold;
-  list-style-position: inside;
+  padding: var(--space-md) var(--space-lg);
+  color: var(--color-text-strong);
+  font-weight: 800;
+  background: rgba(139, 92, 246, 0.1);
   transition:
-    background 0.18s ease,
-    color 0.18s ease;
+    background 160ms ease,
+    color 160ms ease;
 }
 
 .quest-details summary:hover {
-  background: rgba(217, 169, 79, 0.34);
-  color: #7a4f2b;
+  color: white;
+  background: rgba(139, 92, 246, 0.18);
 }
 
 .details-content {
   display: grid;
-  gap: 1rem;
-  margin: 0;
-  padding: 1.15rem 1.2rem 1.25rem;
-  color: var(--parchment-soft);
-  background:
-    linear-gradient(180deg, rgba(47, 31, 20, 0.94), rgba(25, 16, 11, 0.96));
-  border-top: 1px solid rgba(243, 210, 125, 0.42);
-  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.18);
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: rgba(8, 13, 26, 0.42);
+  border-top: 1px solid var(--color-border-soft);
 }
 
 .detail-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.8rem;
+  gap: var(--space-md);
 }
 
 .detail-block {
-  padding: 0.85rem;
-  background: rgba(255, 248, 235, 0.055);
-  border: 1px solid rgba(243, 210, 125, 0.18);
-  border-radius: var(--radius-sm);
+  padding: var(--space-md);
+  background: rgba(17, 24, 39, 0.72);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-md);
 }
 
 .detail-block p {
-  margin: 0.35rem 0 0;
-  color: #f8ead0;
-  line-height: 1.55;
+  margin: 0.25rem 0 0;
+  color: var(--color-muted);
 }
 
 .detail-block .info-label,
 .details-content .info-label {
-  color: var(--gold-light);
+  color: var(--color-secondary);
 }
 
 .dm-hook {
-  border-color: rgba(243, 210, 125, 0.48);
-  background: rgba(217, 169, 79, 0.12);
+  background: var(--color-gold-soft);
+  border-color: rgba(245, 158, 11, 0.34);
+}
+
+.dm-hook .info-label {
+  color: #fde68a;
+}
+
+.dm-hook p {
+  color: var(--color-text);
 }
 
 .details-list {
-  margin: 0.4rem 0 0;
+  margin: 0.45rem 0 0;
   padding-left: 1.2rem;
-  color: #f8ead0;
-  line-height: 1.5;
+  color: var(--color-muted);
 }
 
 .quest-connection-list {
-  list-style: none;
   padding-left: 0;
+  list-style: none;
 }
 
 .quest-connection-list li {
-  margin-top: 0.45rem;
+  margin-top: var(--space-sm);
 }
 
 .quest-connection-button {
   display: inline-flex;
-  width: 100%;
   justify-content: flex-start;
-  padding: 0.45rem 0.65rem;
-  border: 1px solid rgba(243, 210, 125, 0.42);
-  border-radius: var(--radius-sm);
-  background: rgba(243, 210, 125, 0.11);
-  color: #fff0c8;
-  box-shadow: none;
-  font-size: 0.85rem;
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  color: var(--color-text);
   text-align: left;
+  background: rgba(15, 23, 42, 0.74);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-md);
+  box-shadow: none;
 }
 
 .quest-connection-button:hover {
-  background: rgba(243, 210, 125, 0.22);
-  border-color: rgba(243, 210, 125, 0.78);
+  background: rgba(139, 92, 246, 0.14);
+  border-color: rgba(139, 92, 246, 0.42);
   box-shadow: none;
 }
 
 .prerequisite-connection {
-  background: rgba(255, 248, 235, 0.08);
+  color: #cbd5e1;
 }
 
 .unlock-connection {
-  background: rgba(243, 210, 125, 0.14);
+  color: #fde68a;
+  background: var(--color-gold-soft);
+  border-color: rgba(245, 158, 11, 0.3);
 }
 
 .lead-connection {
+  color: #ccfbf1;
+  background: var(--color-secondary-soft);
+  border-color: rgba(20, 184, 166, 0.32);
   border-style: dashed;
-  background: rgba(120, 167, 207, 0.14);
 }
 
 .lead-connection:hover {
-  background: rgba(120, 167, 207, 0.24);
+  background: rgba(20, 184, 166, 0.2);
+  border-color: rgba(20, 184, 166, 0.5);
 }
 
 .tag-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.45rem;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
 }
 
 .quest-tag {
-  display: inline-block;
-  padding: 0.32rem 0.58rem;
-  border-radius: 999px;
-  background: rgba(243, 210, 125, 0.16);
-  border: 1px solid rgba(243, 210, 125, 0.5);
-  color: #fff0c8;
-  font-size: 0.78rem;
-  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.7rem;
+  padding: 0.3rem 0.65rem;
+  color: #ddd6fe;
+  font-size: 0.76rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--color-primary-soft);
+  border: 1px solid rgba(139, 92, 246, 0.32);
+  border-radius: var(--radius-pill);
 }
 
-/* =========================
-   Responsive
-========================= */
 
-@media (max-width: 900px) {
-  .app-layout {
+/* =========================================================
+   Empty State
+========================================================= */
+
+.no-results {
+  padding: var(--space-xl);
+  color: var(--color-muted);
+  text-align: center;
+  background: rgba(17, 24, 39, 0.72);
+  border: 1px dashed rgba(148, 163, 184, 0.35);
+  border-radius: var(--radius-lg);
+}
+
+
+/* =========================================================
+   Responsive
+========================================================= */
+
+@media (max-width: 920px) {
+  .quest-dashboard-layout {
     grid-template-columns: 1fr;
-    width: min(760px, calc(100% - 1.5rem));
   }
 
-  .control-panel {
+  .control-panel,
+  .board-toolbar {
     position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .quest-board-shell {
+    width: min(100% - 1rem, var(--container-width));
+  }
+
+  .panel-heading,
+  .board-toolbar,
+  .contract-topline,
+  .search-section {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
   .filter-options {
-    gap: 0.5rem;
+    align-items: stretch;
+    flex-direction: column;
   }
 
-  .board-toolbar {
-    position: sticky;
-    top: 0.5rem;
+  .filter-options .filter-button {
+    width: 100%;
   }
-}
 
-@media (max-width: 700px) {
   .quest-list {
     grid-template-columns: 1fr;
   }
@@ -813,50 +635,11 @@ button.active {
     grid-template-columns: 1fr;
   }
 
-  .quest-title {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 650px) {
-  .site-header {
-    min-height: 230px;
-    padding: 3.25rem 1rem 4rem;
-  }
-
-  .site-header h1 {
-    letter-spacing: 2px;
-  }
-
-  .app-layout {
-    width: calc(100% - 1rem);
-    margin-top: -2rem;
-  }
-
-  .board-toolbar {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .quest-count {
-    width: fit-content;
-  }
-
-  .search-section {
-    width: 100%;
-  }
-
-  .search-section label {
-    min-width: fit-content;
-  }
-
-  .contract-topline {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
   .status-tools {
-    align-items: flex-start;
-    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .status-select {
+    width: 100%;
   }
 }
